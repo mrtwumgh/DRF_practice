@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from core import views
 from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 router = routers.SimpleRouter()
@@ -28,4 +29,5 @@ router.register(r'transactions', views.TransactionModelViewSet, basename='transa
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('currencies/', views.CurrencyListAPIView.as_view(), name='currencies'),
+    path('login/', obtain_auth_token, name='obtain-auth-token')
 ] + router.urls
